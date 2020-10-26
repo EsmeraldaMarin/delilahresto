@@ -1,0 +1,223 @@
+---
+swagger: "2.0"
+info:
+  description: "Backend proyecto 3"
+  version: "1.0.0"
+  title: "Delilah Resto"
+host: "virtserver.swaggerhub.com"
+basePath: "/EsmeraldaMarin3/DelilahResto/1.0.0"
+tags:
+- name: "user"
+  description: "all users"
+- name: "order"
+  description: "all orders"
+- name: "product"
+  description: "all productos"
+schemes:
+- "https"
+- "http"
+paths:
+  /users:
+    get:
+      tags:
+      - "user"
+      summary: "User Created"
+      parameters: []
+      responses:
+        "200":
+          description: "User found successfully"
+        "404":
+          description: "User not found"
+    post:
+      tags:
+      - "user"
+      summary: "Create a new user"
+      description: "Create a new user if the username or the email don't already exist"
+      parameters: []
+      responses:
+        "200":
+          description: "New user created successfully"
+        "400":
+          description: "Bad request"
+        "409":
+          description: "Existent user"
+  /orders:
+    get:
+      tags:
+      - "order"
+      summary: "Get all orders"
+      description: "An admin can see all the orders, regular clients only can see\
+        \ their orders"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+    post:
+      tags:
+      - "order"
+      summary: "New order"
+      description: "Create an order"
+      parameters: []
+      responses:
+        "200":
+          description: "New order created successfully"
+        "400":
+          description: "Bad request"
+  /orders/{id}:
+    get:
+      tags:
+      - "order"
+      summary: "Get order by id"
+      description: "An admin can see any order, a normal user can see only his own"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Order id to update the status"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+    put:
+      tags:
+      - "order"
+      summary: "Update the order status"
+      description: "Only an admin can update the order status"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Order id to update the status"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Order status updated successfully"
+        "400":
+          description: "Bad request"
+    delete:
+      tags:
+      - "order"
+      summary: "Delete an order"
+      description: "Only an admin can delete an order"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Order id to delete the order "
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Order deleted successfully"
+        "400":
+          description: "Bad request"
+  /products:
+    get:
+      tags:
+      - "product"
+      summary: "Get all products"
+      description: "All the users can see all products"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+    post:
+      tags:
+      - "product"
+      summary: "New product"
+      description: "Create a new product, only an admin can upload a new product"
+      parameters: []
+      responses:
+        "200":
+          description: "New product created successfully"
+        "400":
+          description: "Bad request"
+  /products/{id}:
+    put:
+      tags:
+      - "product"
+      summary: "Update a product by id"
+      description: "Only an admin can update the price, name, stock, image or category\
+        \ of the product."
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Order id to update the order "
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Successful update operation"
+        "400":
+          description: "Bad request"
+    delete:
+      tags:
+      - "product"
+      summary: "Delete a product by id"
+      description: "Only an admin can delete a product."
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Order id to delete the product "
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Bad request"
+definitions:
+  Users:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      username:
+        type: "string"
+      fullname:
+        type: "string"
+      email:
+        type: "string"
+      is_admin:
+        type: "boolean"
+      phone:
+        type: "string"
+      address:
+        type: "string"
+    xml:
+      name: "Users"
+  Orders:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      user_id:
+        type: "integer"
+      status:
+        type: "string"
+      payment_method:
+        type: "string"
+      update_time:
+        type: "string"
+    xml:
+      name: "Orders"
+  Products:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      product_name:
+        type: "string"
+      stock:
+        type: "boolean"
+      img_url:
+        type: "string"
+      category:
+        type: "string"
+    xml:
+      name: "Products"
