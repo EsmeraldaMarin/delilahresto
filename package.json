@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/EsmeraldaMarin/delilahresto#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mysql2": "^2.2.5",
     "nodemon": "^2.0.4"
   }
 }
