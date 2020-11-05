@@ -1,5 +1,8 @@
 var connection = require('../connection');
 
+function createUser(req, res){
+
+}
 function returnUsers(req, res){
     var sql = 'SELECT * FROM delilah_resto.users';
 
@@ -8,7 +11,13 @@ function returnUsers(req, res){
             res.send(err)
         }else{
             res.send(JSON.stringify(users))
+            console.log(users)
         }
     })
 }
-module.exports = returnUsers; 
+
+module.exports = {
+    createUser,
+    returnUsers
+}; 
+

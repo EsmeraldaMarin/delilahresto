@@ -1,236 +1,288 @@
----
-swagger: 2.0
+swagger: '3.0'
+servers: 
+ description: Servidor local
+ url: http://localhost:3000
 info:
-  description: Backend proyecto 3
   version: 1.0.0
   title: Delilah Resto
+  description: Backend proyecto 3
+tags:
+- name: "user"
+  description: "all users"
+- name: "order"   
+  description: "all orders"
+- name: "product"   
+  description: "all productos"
+# Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /EsmeraldaMarin3/DelilahResto/1.0.0
-tags:
-- name: user
-  description: all users
-- name: order
-  description: all orders
-- name: product
-  description: all productos
 schemes:
-- https
-- http
-paths:
+ - https
+ - http 
+ 
+paths: 
   /users:
     get:
       tags:
-      - user
-      summary: Get all users
-      description: An admin can get all users info, a client only can get its info
-      parameters: []
+      - "user"
+      summary: "Get all users"
+      description: "An admin can get all users info, a client only can get its info"
       responses:
         "200":
-          description: User found successfully
+          description: "User found successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Users'
         "404":
-          description: User not found
-    post:
+          description: "User not found"
+    post: 
       tags:
-      - user
-      summary: Create a new user
-      description: Create a new user if the username or the email don't already exist
-      parameters: []
+      - "user"
+      summary: "Create a new user"
+      description: "Create a new user if the username or the email doesn't already exist"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/Users'
       responses:
         "200":
-          description: New user created successfully
+          description: "New user created successfully"
         "400":
-          description: Bad request
+          description: "Bad request"
         "409":
-          description: Existent user
-  /users/signin:
-    post:
-      tags:
-      - user
-      summary: Create a new user
-      description: Create a new user if the username or the email doesn't already exist
-      parameters: []
-      responses:
-        "200":
-          description: New user created successfully
-        "400":
-          description: Bad request
-        "409":
-          description: Existent user
+          description: "Existent user"
   /orders:
     get:
       tags:
-      - order
-      summary: Get all orders
-      description: An admin can see all the orders, regular clients only can see their orders
-      parameters: []
+      - "order"
+      summary: "Get all orders"
+      description: "An admin can see all the orders, regular clients only can see their orders"
       responses:
         "200":
-          description: Successful operation
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Orders'
         "400":
-          description: Bad request
+          description: "Bad request"
     post:
       tags:
-      - order
-      summary: New order
-      description: Create an order
-      parameters: []
+      - "order"
+      summary: "New order"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/Orders'
+      description: "Create an order"
       responses:
         "200":
-          description: New order created successfully
+          description: "New order created successfully"
         "400":
-          description: Bad request
+          description: "Bad request"
+    
   /orders/{id}:
     get:
       tags:
-      - order
-      summary: Get order by id
-      description: An admin can see any order, a normal user can see only his own
+      - "order"
+      summary: "Get order by id"
+      description: "An admin can see any order, a normal user can see only his own"
       parameters:
-      - name: id
-        in: path
-        description: Order id to update the status
-        required: true
-        type: integer
+        - name: id
+          in: path
+          description: "Order id to update the status"
+          required: true
+          type: integer
       responses:
         "200":
-          description: Successful operation
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Orders'
         "400":
-          description: Bad request
+          description: "Bad request"
     put:
       tags:
-      - order
-      summary: Update the order status
-      description: Only an admin can update the order status
+      - "order"
+      summary: "Update the order status"
+      description: "Only an admin can update the order status"
       parameters:
       - name: id
         in: path
-        description: Order id to update the status
+        description: "Order id to update the status"
         required: true
         type: integer
+      requestBody:
+        content:
+            application/json:
+              schema:
+               properties:
+                  status:
+                    description: Updated status of the order
+                    type: string
+               required:
+                 - status
       responses:
         "200":
-          description: Order status updated successfully
+          description: "Order status updated successfully"
         "400":
-          description: Bad request
+          description: "Bad request"
     delete:
       tags:
-      - order
-      summary: Delete an order
-      description: Only an admin can delete an order
+      - "order"
+      summary: "Delete an order"
+      description: "Only an admin can delete an order"
       parameters:
       - name: id
         in: path
-        description: 'Order id to delete the order '
+        description: "Order id to delete the order "
         required: true
         type: integer
       responses:
         "200":
-          description: Order deleted successfully
+          description: "Order deleted successfully"
         "400":
-          description: Bad request
+          description: "Bad request"
   /products:
     get:
       tags:
-      - product
-      summary: Get all products
-      description: All the users can see all products
-      parameters: []
+      - "product"
+      summary: "Get all products"
+      description: "All the users can see all products"
       responses:
         "200":
-          description: Successful operation
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Products'
         "400":
-          description: Bad request
+          description: "Bad request"
     post:
       tags:
-      - product
-      summary: New product
-      description: Create a new product, only an admin can upload a new product
-      parameters: []
+      - "product"
+      summary: "New product"
+      description: "Create a new product, only an admin can upload a new product"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/Products'
       responses:
-        "200":
-          description: New product created successfully
+        "201":
+          description: "New product created successfully"
         "400":
-          description: Bad request
+          description: "Bad request"
+    
   /products/{id}:
     put:
       tags:
-      - product
-      summary: Update a product by id
-      description: Only an admin can update the price, name, stock, image or category of the product.
+      - "product"
+      summary: "Update a product by id"
+      description: "Only an admin can update the price, name, stock, image or category of the product."
       parameters:
       - name: id
         in: path
-        description: 'Product id to update the product '
+        description: "Product id to update the product "
         required: true
         type: integer
+      requestBody:
+        content:
+            application/json:
+              schema:
+               properties:
+                  price:
+                    description: Updated price of the product
+                    type: string
+                  name:
+                    description: Updated name of the product
+                    type: string
+                  stock:
+                    description: Updated stock of the product
+                    type: string
+                  image:
+                    description: Updated image of the product
+                    type: string
+                  category:
+                    description: Updated category of the product
+                    type: string
+              
       responses:
         "200":
-          description: Successful update operation
+          description: "Successful update operation"
         "400":
-          description: Bad request
+          description: "Bad request"
     delete:
       tags:
-      - product
-      summary: Delete a product by id
-      description: Only an admin can delete a product.
+      - "product"
+      summary: "Delete a product by id"
+      description: "Only an admin can delete a product."
       parameters:
       - name: id
         in: path
-        description: 'Order id to delete the product '
+        description: "Order id to delete the product "
         required: true
         type: integer
       responses:
         "200":
-          description: Successful operation
+          description: "Successful operation"
         "400":
-          description: Bad request
+          description: "Bad request"
+
 definitions:
   Users:
-    type: object
+    type: "object"
     properties:
       id:
-        type: integer
+        type: "integer"
       username:
-        type: string
-      fullname:
-        type: string
+        type: "string"
+      fullname: 
+        type: "string"
       email:
-        type: string
+        type: "string"
       is_admin:
-        type: boolean
+        type: "boolean"
       phone:
-        type: string
+        type: "string"
       address:
-        type: string
+        type: "string"
     xml:
-      name: Users
+      name: "Users"
   Orders:
-    type: object
+    type: "object"
     properties:
       id:
-        type: integer
+        type: "integer"
       user_id:
-        type: integer
-      status:
-        type: string
+        type: "integer"
+      status: 
+        type: "string"
       payment_method:
-        type: string
+        type: "string"
       update_time:
-        type: string
+        type: "string"
     xml:
-      name: Orders
+      name: "Orders"
   Products:
-    type: object
+    type: "object"
     properties:
       id:
-        type: integer
+        type: "integer"
       product_name:
-        type: string
-      stock:
-        type: boolean
+        type: "string"
+      stock: 
+        type: "boolean"
       img_url:
-        type: string
+        type: "string"
       category:
-        type: string
+        type: "string"
     xml:
-      name: Products
+      name: "Products"
