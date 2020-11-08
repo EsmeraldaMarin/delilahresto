@@ -4,7 +4,7 @@ let cors = require('cors');
 
 
 const {returnUsers, createUser} = require('./servers/controllers/users');
-const {selectProducts, insertProducts} = require('./servers/controllers/products');
+const {selectProducts, insertProduct, updateProduct, deleteProduct} = require('./servers/controllers/products');
 
 let app = express();
 
@@ -25,8 +25,9 @@ app.post('/users', createUser)
 
 
 app.get('/products', selectProducts);
-app.post('/products', insertProducts)
-
+app.post('/products', insertProduct);
+app.put('/products/:id', updateProduct);
+app.delete('/products/:id', deleteProduct);
 
 
 app.listen(3000, function () {
