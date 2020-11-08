@@ -1,10 +1,10 @@
-var connection = require('../connection');
+let connection = require('../connection');
 
 function createUser(req, res){
 
 }
 function returnUsers(req, res){
-    var sql = 'SELECT * FROM delilah_resto.users';
+    let sql = 'SELECT * FROM delilah_resto.users';
 
     connection.query(sql, function (err, users){
         if(err){

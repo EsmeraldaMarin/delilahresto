@@ -4,7 +4,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* get all orders
+* delete orders, update order status
 
 # REESTABLECER
 

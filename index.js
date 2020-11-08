@@ -5,7 +5,7 @@ let cors = require('cors');
 
 const {returnUsers, createUser} = require('./servers/controllers/users');
 const {selectProducts, insertProduct, updateProduct, deleteProduct} = require('./servers/controllers/products');
-const {getAllOrders}= require('./servers/controllers/orders')
+const {getAllOrders, updateOrder, deleteOrder}= require('./servers/controllers/orders')
 
 let app = express();
 
@@ -27,6 +27,8 @@ app.post('/users', createUser)
 //Orders Routes
 
 app.get('/orders', getAllOrders)
+app.put('/orders/:id', updateOrder)
+app.delete('/orders/:id', deleteOrder)
 
 //Products Rutes
 
