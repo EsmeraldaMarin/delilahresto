@@ -10,8 +10,7 @@ function returnUsers(req, res){
         if(err){
             res.send(err)
         }else{
-            res.send(JSON.stringify(users))
-            console.log(users)
+            res.send(users)
         }
     })
 }

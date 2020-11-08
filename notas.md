@@ -4,7 +4,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* controller completo de tabla products
+* get all orders
 
 # REESTABLECER
 

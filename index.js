@@ -5,6 +5,7 @@ let cors = require('cors');
 
 const {returnUsers, createUser} = require('./servers/controllers/users');
 const {selectProducts, insertProduct, updateProduct, deleteProduct} = require('./servers/controllers/products');
+const {getAllOrders}= require('./servers/controllers/orders')
 
 let app = express();
 
@@ -23,6 +24,11 @@ app.post('/users', createUser)
 //tengo que usar el token para saber si esa persona es admin o no
 //si no es admin no puede modificar los productos ni los estados de la orden
 
+//Orders Routes
+
+app.get('/orders', getAllOrders)
+
+//Products Rutes
 
 app.get('/products', selectProducts);
 app.post('/products', insertProduct);
