@@ -4,7 +4,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* delete orders, update order status
+* create order
 
 # REESTABLECER
 
@@ -33,6 +33,25 @@ Route parameters
     imgUrl = https://otrourl.com,
     category = meats
 }
+
+## Order Object
+
+{
+    "details": [
+        {
+            "product_id": 1,
+            "quantity": 1
+        },{
+                "product_id": 2,
+            "quantity": 3 
+        }
+    ],
+    "paymentMethod": "tarjeta",
+    "user_id": 1
+}
+
+
+
 
 
 

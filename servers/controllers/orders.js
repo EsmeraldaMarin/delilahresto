@@ -11,6 +11,46 @@ function getAllOrders(req, res) {
             console.log(err)
             res.status(500).json({ message: 'Internal Error' })
         } else {
+            console.log("hola")
+            res.send(orders)
+        }
+    })
+}
+
+function newOrder(req, res) {
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    let d = new Date();
+    let h = addZero(d.getHours());
+    let m = addZero(d.getMinutes());
+    let orderTime = h + ":" + m;
+
+    let order = req.body;
+
+    let sql = `INSERT INTO delilah_resto.orders(user_id, status, paymentMethod, updateTime)
+    VALUES (${order.user_id}, 'new', '${order.paymentMethod}', '${orderTime}')`;
+
+    connection.query(sql, (err, orders) => {
+        if (err) {
+            console.log(err)
+            res.status(500).json({ message: 'Internal Error' })
+        } else {
+            order.details.forEach(element => {
+
+                let orderDetail = `INSERT INTO delilah_resto.orders_details(order_id, product_id, quantity)
+                VALUES (${orders.insertId}, ${element.product_id}, '${element.quantity}')`;
+
+                connection.query(orderDetail, (err, order)=>{
+                    if(err){
+                        res.status(500).json({ message: 'Internal Error' })
+                    }
+                })
+            });
             res.send(orders)
         }
     })
@@ -63,6 +103,7 @@ function deleteOrder(req, res) {
 
 module.exports = {
     getAllOrders,
+    newOrder,
     updateOrder,
     deleteOrder
 }

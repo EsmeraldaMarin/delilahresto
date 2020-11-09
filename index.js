@@ -5,7 +5,7 @@ let cors = require('cors');
 
 const {returnUsers, createUser} = require('./servers/controllers/users');
 const {selectProducts, insertProduct, updateProduct, deleteProduct} = require('./servers/controllers/products');
-const {getAllOrders, updateOrder, deleteOrder}= require('./servers/controllers/orders')
+const {getAllOrders,newOrder, updateOrder, deleteOrder}= require('./servers/controllers/orders')
 
 let app = express();
 
@@ -27,6 +27,7 @@ app.post('/users', createUser)
 //Orders Routes
 
 app.get('/orders', getAllOrders)
+app.post('/orders', newOrder)
 app.put('/orders/:id', updateOrder)
 app.delete('/orders/:id', deleteOrder)
 
@@ -36,7 +37,6 @@ app.get('/products', selectProducts);
 app.post('/products', insertProduct);
 app.put('/products/:id', updateProduct);
 app.delete('/products/:id', deleteProduct);
-
 
 app.listen(3000, function () {
     console.log("El servidor esta corriendo en el puerto 3000")
