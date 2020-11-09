@@ -4,7 +4,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* create order
+* create user, validate email and username
 
 # REESTABLECER
 
@@ -23,6 +23,20 @@ req.params.id
 
 http://expressjs.com/en/guide/routing.html
 Route parameters
+
+
+## User Object
+
+    
+{
+    "username":"Elisa123",
+    "fullname":"Elisa Rosales",
+    "email":"eli@gmail.com",
+    "phone":"353121615",
+    "address":"sarmiento 123",
+    "password":"token",
+    "is_admin": true
+}
 
 ## Product Object
 
