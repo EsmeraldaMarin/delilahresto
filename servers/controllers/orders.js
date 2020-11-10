@@ -1,17 +1,32 @@
 let connection = require('../connection');
 
 function getAllOrders(req, res) {
-    let sql = `SELECT * FROM orders_details
-    INNER JOIN orders ON orders_details.order_id = orders.id
-    INNER JOIN products ON orders_details.product_id = products.id
-    INNER JOIN users ON orders.user_id = users.id
-    `
+
+
+    let sql;
+    let userRol = req.params.rol.is_admin
+    let userId = req.params.rol.id
+
+    if (userRol == 1) {
+
+        sql = `SELECT * FROM orders_details
+        INNER JOIN orders ON orders_details.order_id = orders.id
+        INNER JOIN products ON orders_details.product_id = products.id
+        INNER JOIN users ON orders.user_id = users.id`
+    }else{
+        let user = req.params.user
+        console.log(user)
+        sql = `SELECT * FROM orders_details 
+        INNER JOIN orders ON orders_details.order_id = orders.id
+        INNER JOIN products ON orders_details.product_id = products.id
+        INNER JOIN users ON orders.user_id = users.id
+        WHERE user_id = ${userId}`
+    }
     connection.query(sql, (err, orders) => {
         if (err) {
             console.log(err)
             res.status(500).json({ message: 'Internal Error' })
         } else {
-            console.log("hola")
             res.send(orders)
         }
     })
@@ -45,8 +60,8 @@ function newOrder(req, res) {
                 let orderDetail = `INSERT INTO delilah_resto.orders_details(order_id, product_id, quantity)
                 VALUES (${orders.insertId}, ${element.product_id}, '${element.quantity}')`;
 
-                connection.query(orderDetail, (err, order)=>{
-                    if(err){
+                connection.query(orderDetail, (err, order) => {
+                    if (err) {
                         res.status(500).json({ message: 'Internal Error' })
                     }
                 })

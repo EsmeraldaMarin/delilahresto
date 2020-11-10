@@ -2,11 +2,15 @@
 Authorization: Bearer <token>
  libreria bcrypt encripta pero no desencripta
 
+
+
 # Ultimas cosas hechas
 
-* create user, validate email and username
+* middleware validate token and validate rol
 
-# REESTABLECER
+# Hacer
+
+* Pasar los middlewares a todas las rutas
 
 ## TABLA PRODUCTS
 
@@ -24,10 +28,14 @@ req.params.id
 http://expressjs.com/en/guide/routing.html
 Route parameters
 
+# token usuario
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsYW4iLCJwYXNzd29yZCI6ImFsYW4xMjMiLCJpYXQiOjE2MDQ4OTQ5ODB9.N33mv9NYVwOaNAILp81YeLZx3jg6Vg0TfI5VdFiDeRA"
 
 ## User Object
 
-    
+* sign in
+
 {
     "username":"Elisa123",
     "fullname":"Elisa Rosales",
@@ -38,7 +46,17 @@ Route parameters
     "is_admin": true
 }
 
+* login
+
+{
+    "username": "Alan",
+    "password": "alan123"
+}
+    
+
 ## Product Object
+
+* create and update a  product
 
 {
     product_name = bistec,
@@ -49,6 +67,8 @@ Route parameters
 }
 
 ## Order Object
+
+* create an order
 
 {
     "details": [
@@ -62,6 +82,12 @@ Route parameters
     ],
     "paymentMethod": "tarjeta",
     "user_id": 1
+}
+
+* update order
+
+{
+    "status": "cancelled"
 }
 
 

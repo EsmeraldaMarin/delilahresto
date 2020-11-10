@@ -1,8 +1,12 @@
 let connection = require('../connection');
+let jwt = require('jsonwebtoken');
+
+let firma = "Acamica 2020";
 
 function createUser(req, res) {
 
     let user = req.body;
+    let token = jwt.sign(user.password, firma);
     let validator = 'SELECT email, username FROM delilah_resto.users'
 
     connection.query(validator, function (err, info) {
@@ -11,13 +15,13 @@ function createUser(req, res) {
         let resultUsername = info.find(elem => elem.username === user.username)
 
         if (resultEmail || resultUsername) {
-            
+
             res.status(409).json({ message: 'This user already exists' })
             return
         }
 
         let sql = `INSERT INTO delilah_resto.users(username, fullname, email, phone, address, password, is_admin)
-        VALUES ('${user.username}', '${user.fullname}', '${user.email}', '${user.phone}', '${user.address}', '${user.password}', ${user.is_admin});`;
+        VALUES ('${user.username}', '${user.fullname}', '${user.email}', '${user.phone}', '${user.address}', '${token}', ${user.is_admin});`;
 
         connection.query(sql, function (err, user) {
             if (err) {
@@ -28,13 +32,33 @@ function createUser(req, res) {
                 res.status(201).json({ message: 'user created' })
             }
         })
+    })
+}
 
+function logIn(req, res) {
 
+    let user = req.body
+    let token = jwt.sign(user.password, firma);
+    let sql = `SELECT password FROM delilah_resto.users WHERE users.password = '${token}'`
+   
+    connection.query(sql, function (err, passwords) {
+
+        if (err || passwords.length == 0) {
+            console.log("Usuario Inexistente")
+            res.send(err)
+        } else {
+
+            let userLogged = jwt.sign(user, firma)
+            
+            res.json({
+                'mensaje': 'Usuario autenticado correctamente',
+                'jwt': userLogged
+            })
+        }
     })
 
-
-
 }
+
 function returnUsers(req, res) {
     let sql = 'SELECT * FROM delilah_resto.users';
 
@@ -49,6 +73,9 @@ function returnUsers(req, res) {
 
 module.exports = {
     createUser,
-    returnUsers
+    returnUsers,
+    logIn
 };
+
+
 
