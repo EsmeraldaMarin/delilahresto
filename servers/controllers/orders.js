@@ -13,7 +13,7 @@ function getAllOrders(req, res) {
         INNER JOIN orders ON orders_details.order_id = orders.id
         INNER JOIN products ON orders_details.product_id = products.id
         INNER JOIN users ON orders.user_id = users.id`
-    }else{
+    } else {
         let user = req.params.user
         console.log(user)
         sql = `SELECT * FROM orders_details 
@@ -75,9 +75,17 @@ function updateOrder(req, res) {
     let update = req.body;
     let orderId = req.params.id;
 
-    let sql = `UPDATE delilah_resto.orders
-    SET status = '${update.status}'
-    WHERE id = ${orderId}`
+    let sql;
+    let userRol = req.params.rol.is_admin
+
+    if (userRol == 1) {
+
+        sql = `UPDATE delilah_resto.orders
+        SET status = '${update.status}'
+        WHERE id = ${orderId}`
+    }else{
+        res.status(403).json({message: "The user is not authorized to perform this operation"})
+    }
 
     connection.query(sql, (err, order) => {
         if (err) {
@@ -93,8 +101,17 @@ function updateOrder(req, res) {
 function deleteOrder(req, res) {
     let orderId = req.params.id;
 
+    let sql;
+    let userRol = req.params.rol.is_admin
+
+    if (userRol == 1) {
+
+        sql = `DELETE FROM orders WHERE id = ${orderId}`
+
+    }else{
+        res.status(403).json({message: "The user is not authorized to perform this operation"})
+    }
     //borrar una orden general
-    let sql = `DELETE FROM orders WHERE id = ${orderId}`
 
     connection.query(sql, function (err, order) {
         if (err) {

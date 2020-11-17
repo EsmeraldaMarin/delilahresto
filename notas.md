@@ -6,7 +6,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* middleware validate token and validate rol
+* authoritation and validation - orders
 
 # Hacer
 
@@ -28,10 +28,6 @@ req.params.id
 http://expressjs.com/en/guide/routing.html
 Route parameters
 
-# token usuario
-
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsYW4iLCJwYXNzd29yZCI6ImFsYW4xMjMiLCJpYXQiOjE2MDQ4OTQ5ODB9.N33mv9NYVwOaNAILp81YeLZx3jg6Vg0TfI5VdFiDeRA"
-
 ## User Object
 
 * sign in
@@ -52,7 +48,14 @@ Route parameters
     "username": "Alan",
     "password": "alan123"
 }
+
+token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsYW4iLCJwYXNzd29yZCI6ImFsYW4xMjMiLCJpYXQiOjE2MDQ4OTQ5ODB9.N33mv9NYVwOaNAILp81YeLZx3jg6Vg0TfI5VdFiDeRA"
     
+{
+    "username": "Mari123",
+    "password": "123"
+}
+token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmkxMjMiLCJwYXNzd29yZCI6IjEyMyIsImlhdCI6MTYwNTU4NDU2M30.OjLVKjrsqmfCgZs3_wq3nFrC-NL9oxYUoQBvfjyhMB4"
 
 ## Product Object
 

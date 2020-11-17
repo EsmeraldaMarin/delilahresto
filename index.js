@@ -24,7 +24,7 @@ app.post('/login', logIn)
 
 //Users Routes
 
-app.get('/users', defineRol, returnUsers);
+app.get('/users', defineRol,  validateRol, returnUsers);//hacer - admin= all info, user= its info
 app.post('/users', createUser)
 
 
@@ -32,15 +32,15 @@ app.post('/users', createUser)
 
 app.get('/orders',defineRol, validateRol, getAllOrders)
 app.post('/orders', defineRol, newOrder)
-app.put('/orders/:id', defineRol, updateOrder)
-app.delete('/orders/:id', defineRol, deleteOrder)
+app.put('/orders/:id', defineRol, validateRol, updateOrder)
+app.delete('/orders/:id', defineRol, validateRol, deleteOrder)
 
 //Products Rutes
 
 app.get('/products', selectProducts);
-app.post('/products', defineRol, insertProduct);
-app.put('/products/:id', defineRol, updateProduct);
-app.delete('/products/:id', defineRol, deleteProduct);
+app.post('/products', defineRol, validateRol, insertProduct); //hacer - only admin
+app.put('/products/:id', defineRol, validateRol, updateProduct); //hacer - only admin
+app.delete('/products/:id', defineRol,  validateRol, deleteProduct); //hacer - only admin
 
 app.listen(3000, function () {
     console.log("El servidor esta corriendo en el puerto 3000")
