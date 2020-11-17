@@ -6,7 +6,7 @@ Authorization: Bearer <token>
 
 # Ultimas cosas hechas
 
-* authoritation and validation - orders
+* authoritation and validation - products
 
 # Hacer
 
@@ -62,12 +62,13 @@ token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmkxMjMiLCJwYX
 * create and update a  product
 
 {
-    product_name = bistec,
-    price = 50.00,
-    stock = false,
-    imgUrl = https://otrourl.com,
-    category = meats
+    "product_name" : "bistec",
+    "price" : 50.00,
+    "stock" : false,
+    "imgUrl" : "https://otrourl.com",
+    "category" : "meats"
 }
+
 
 ## Order Object
 

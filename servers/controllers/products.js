@@ -16,8 +16,18 @@ function selectProducts(req, res) {
 
 function insertProduct(req, res) {
     let newProduct = req.body
-    let sql = `INSERT INTO delilah_resto.products(product_name, price, stock, imgUrl, category)
-    VALUES ('${newProduct.product_name}', ${newProduct.price}, ${newProduct.stock}, '${newProduct.imgUrl}', '${newProduct.category}');`;
+    let sql;
+    let userRol = req.params.rol.is_admin
+
+    if (userRol == 1) {
+
+        sql = `INSERT INTO delilah_resto.products(product_name, price, stock, imgUrl, category)
+        VALUES ('${newProduct.product_name}', ${newProduct.price}, ${newProduct.stock}, '${newProduct.imgUrl}', '${newProduct.category}');`;
+        
+    }else{
+        res.status(403).json({message: "The user is not authorized to perform this operation"})
+    }
+
 
     connection.query(sql, function (err, products) {
         if (err) {
@@ -34,14 +44,22 @@ function updateProduct(req, res) {
 
     let update = req.body;
     let productId = req.params.id;
+    let sql;
+    let userRol = req.params.rol.is_admin
 
-    let sql = `UPDATE delilah_Resto.products
-    SET price = ${update.price},
-    product_name = '${update.product_name}',
-    stock = ${update.stock},
-    imgUrl= '${update.imgUrl}',
-    category = '${update.category}'
-    WHERE id = ${productId}`
+    if (userRol == 1) {
+
+        sql = `UPDATE delilah_Resto.products
+        SET price = ${update.price},
+        product_name = '${update.product_name}',
+        stock = ${update.stock},
+        imgUrl= '${update.imgUrl}',
+        category = '${update.category}'
+        WHERE id = ${productId}`
+            
+    }else{
+        res.status(403).json({message: "The user is not authorized to perform this operation"})
+    }
 
     connection.query(sql, function (err, product) {
         if (err) {
@@ -58,7 +76,15 @@ function updateProduct(req, res) {
 function deleteProduct(req, res) {
 
     let productId = req.params.id;
-    let sql = `DELETE FROM products WHERE id = ${productId}`
+    let sql;
+    let userRol = req.params.rol.is_admin
+
+    if (userRol == 1) {
+
+        sql = `DELETE FROM products WHERE id = ${productId}`        
+    }else{
+        res.status(403).json({message: "The user is not authorized to perform this operation"})
+    }
 
     connection.query(sql, function (err, product) {
         if (err) {

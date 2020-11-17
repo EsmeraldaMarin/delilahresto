@@ -38,9 +38,9 @@ app.delete('/orders/:id', defineRol, validateRol, deleteOrder)
 //Products Rutes
 
 app.get('/products', selectProducts);
-app.post('/products', defineRol, validateRol, insertProduct); //hacer - only admin
-app.put('/products/:id', defineRol, validateRol, updateProduct); //hacer - only admin
-app.delete('/products/:id', defineRol,  validateRol, deleteProduct); //hacer - only admin
+app.post('/products', defineRol, validateRol, insertProduct);
+app.put('/products/:id', defineRol, validateRol, updateProduct);
+app.delete('/products/:id', defineRol,  validateRol, deleteProduct); 
 
 app.listen(3000, function () {
     console.log("El servidor esta corriendo en el puerto 3000")
