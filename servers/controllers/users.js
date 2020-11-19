@@ -39,13 +39,13 @@ function logIn(req, res) {
 
     let user = req.body
     let token = jwt.sign(user.password, firma);
-    let sql = `SELECT password FROM delilah_resto.users WHERE users.password = '${token}'`
+    let sql = `SELECT password FROM delilah_resto.users WHERE users.password = '${token}' AND users.username = '${user.username}'`
    
     connection.query(sql, function (err, passwords) {
 
         if (err || passwords.length == 0) {
-            console.log("Usuario Inexistente")
-            res.send(err)
+            res.status(500).json({message: "This user doesn't exist or the password is wrong"})
+            return
         } else {
 
             let userLogged = jwt.sign(user, firma)

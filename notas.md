@@ -6,7 +6,7 @@ libreria bcrypt encripta pero no desencripta
 
 # Ultimas cosas hechas
 
-* correcciones minimas y testeo
+* correcciones de login, borrado de carpetas
 
 # Hacer
 
