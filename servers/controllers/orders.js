@@ -42,11 +42,12 @@ function newOrder(req, res) {
     let h = addZero(d.getHours());
     let m = addZero(d.getMinutes());
     let orderTime = h + ":" + m;
+    let userId = req.params.rol.id
 
     let order = req.body;
 
     let sql = `INSERT INTO delilah_resto.orders(user_id, status, paymentMethod, updateTime)
-    VALUES (${order.user_id}, 'new', '${order.paymentMethod}', '${orderTime}')`;
+    VALUES (${userId}, 'new', '${order.paymentMethod}', '${orderTime}')`;
 
     connection.query(sql, (err, orders) => {
         if (err) {
@@ -64,7 +65,7 @@ function newOrder(req, res) {
                     }
                 })
             });
-            res.send(orders)
+            res.status(200).json({message: "Order created"})
         }
     })
 }
@@ -83,6 +84,7 @@ function updateOrder(req, res) {
         WHERE id = ${orderId}`
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
+        return
     }
 
     connection.query(sql, (err, order) => {
@@ -108,6 +110,7 @@ function deleteOrder(req, res) {
 
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
+        return
     }
     //borrar una orden general
 

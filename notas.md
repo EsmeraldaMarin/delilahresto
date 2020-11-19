@@ -6,7 +6,7 @@ libreria bcrypt encripta pero no desencripta
 
 # Ultimas cosas hechas
 
-* authoritation and validation - users
+* correcciones minimas y testeo
 
 # Hacer
 
@@ -85,7 +85,6 @@ token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmkxMjMiLCJwYX
         }
     ],
     "paymentMethod": "tarjeta",
-    "user_id": 1
 }
 
 * update order

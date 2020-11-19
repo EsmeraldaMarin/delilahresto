@@ -31,7 +31,7 @@ app.post('/users', createUser);
 //Orders Routes
 
 app.get('/orders', defineRol, validateRol, getAllOrders)
-app.post('/orders', defineRol, newOrder)
+app.post('/orders', defineRol, validateRol, newOrder)
 app.put('/orders/:id', defineRol, validateRol, updateOrder)
 app.delete('/orders/:id', defineRol, validateRol, deleteOrder)
 

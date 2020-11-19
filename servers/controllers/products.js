@@ -26,6 +26,7 @@ function insertProduct(req, res) {
         
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
+        return
     }
 
 
@@ -64,6 +65,7 @@ function updateProduct(req, res) {
             
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
+        return
     }
 
     connection.query(sql, function (err, product) {
@@ -89,6 +91,7 @@ function deleteProduct(req, res) {
         sql = `DELETE FROM products WHERE id = ${productId}`        
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
+        return
     }
 
     connection.query(sql, function (err, product) {
