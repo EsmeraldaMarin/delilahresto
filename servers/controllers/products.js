@@ -35,7 +35,12 @@ function insertProduct(req, res) {
             res.status(500).json({ error: 'Asegurese de ingresar todos los datos del producto' });
 
         } else {
-            res.status(201).json({ message: 'product created' })
+            res.status(201).json(
+                {
+                    message: 'product created',
+                    productId: products.insertId 
+                }
+            )
         }
     })
 }

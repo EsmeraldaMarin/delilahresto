@@ -24,13 +24,13 @@ app.post('/login', logIn)
 
 //Users Routes
 
-app.get('/users', defineRol,  validateRol, returnUsers);//hacer - admin= all info, user= its info
-app.post('/users', createUser)
+app.get('/users', defineRol,  validateRol, returnUsers);
+app.post('/users', createUser);
 
 
 //Orders Routes
 
-app.get('/orders',defineRol, validateRol, getAllOrders)
+app.get('/orders', defineRol, validateRol, getAllOrders)
 app.post('/orders', defineRol, newOrder)
 app.put('/orders/:id', defineRol, validateRol, updateOrder)
 app.delete('/orders/:id', defineRol, validateRol, deleteOrder)

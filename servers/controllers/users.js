@@ -60,7 +60,19 @@ function logIn(req, res) {
 }
 
 function returnUsers(req, res) {
-    let sql = 'SELECT * FROM delilah_resto.users';
+    let sql;
+    let userRol = req.params.rol.is_admin
+    let userId = req.params.rol.id
+
+    if (userRol == 1) {
+
+        console.log(`You are an admin`)
+        sql = 'SELECT * FROM delilah_resto.users'
+    } else {
+        console.log(`You are a regular user`)
+        sql = `SELECT * FROM delilah_resto.users WHERE id = ${userId}`
+    }
+
 
     connection.query(sql, function (err, users) {
         if (err) {

@@ -14,8 +14,6 @@ function getAllOrders(req, res) {
         INNER JOIN products ON orders_details.product_id = products.id
         INNER JOIN users ON orders.user_id = users.id`
     } else {
-        let user = req.params.user
-        console.log(user)
         sql = `SELECT * FROM orders_details 
         INNER JOIN orders ON orders_details.order_id = orders.id
         INNER JOIN products ON orders_details.product_id = products.id

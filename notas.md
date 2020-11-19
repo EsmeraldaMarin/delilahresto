@@ -1,12 +1,12 @@
 # notas
 Authorization: Bearer <token>
- libreria bcrypt encripta pero no desencripta
+libreria bcrypt encripta pero no desencripta
 
 
 
 # Ultimas cosas hechas
 
-* authoritation and validation - products
+* authoritation and validation - users
 
 # Hacer
 
