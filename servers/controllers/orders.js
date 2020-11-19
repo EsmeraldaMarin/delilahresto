@@ -46,8 +46,8 @@ function newOrder(req, res) {
 
     let order = req.body;
 
-    let sql = `INSERT INTO delilah_resto.orders(user_id, status, paymentMethod, updateTime)
-    VALUES (${userId}, 'new', '${order.paymentMethod}', '${orderTime}')`;
+    let sql = `INSERT INTO delilah_resto.orders(user_id, status, payment_method, update_time)
+    VALUES (${userId}, 'new', '${order.payment_method}', '${orderTime}')`;
 
     connection.query(sql, (err, orders) => {
         if (err) {

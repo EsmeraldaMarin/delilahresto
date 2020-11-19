@@ -21,8 +21,8 @@ function insertProduct(req, res) {
 
     if (userRol == 1) {
 
-        sql = `INSERT INTO delilah_resto.products(product_name, price, stock, imgUrl, category)
-        VALUES ('${newProduct.product_name}', ${newProduct.price}, ${newProduct.stock}, '${newProduct.imgUrl}', '${newProduct.category}');`;
+        sql = `INSERT INTO delilah_resto.products(product_name, price, stock, img_url, category)
+        VALUES ('${newProduct.product_name}', ${newProduct.price}, ${newProduct.stock}, '${newProduct.img_url}', '${newProduct.category}');`;
         
     }else{
         res.status(403).json({message: "The user is not authorized to perform this operation"})
@@ -59,7 +59,7 @@ function updateProduct(req, res) {
         SET price = ${update.price},
         product_name = '${update.product_name}',
         stock = ${update.stock},
-        imgUrl= '${update.imgUrl}',
+        img_url= '${update.img_url}',
         category = '${update.category}'
         WHERE id = ${productId}`
             

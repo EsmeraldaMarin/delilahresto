@@ -6,27 +6,11 @@ libreria bcrypt encripta pero no desencripta
 
 # Ultimas cosas hechas
 
-* correcciones de login, borrado de carpetas
+* correcciones de columnas, precios, authorization params
 
 # Hacer
 
-* Pasar los middlewares a todas las rutas
-
-## TABLA PRODUCTS
-
-* price (aumentar el numero de caracteres)
-* cambiar todo de imgUrl a img_url
-
-# DUDAS
-
-/pedido/:id
-localhost:3000/pedido/1
-app.get(‘/pedido/:id’, ...
-function(req, res) {
-req.params.id
-
-http://expressjs.com/en/guide/routing.html
-Route parameters
+* Documentacion, corregir swagger
 
 ## User Object
 
@@ -65,7 +49,7 @@ token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmkxMjMiLCJwYX
     "product_name" : "bistec",
     "price" : 50.00,
     "stock" : false,
-    "imgUrl" : "https://otrourl.com",
+    "img_url" : "https://otrourl.com",
     "category" : "meats"
 }
 
@@ -84,7 +68,7 @@ token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmkxMjMiLCJwYX
             "quantity": 3 
         }
     ],
-    "paymentMethod": "tarjeta",
+    "payment_method": "tarjeta"
 }
 
 * update order

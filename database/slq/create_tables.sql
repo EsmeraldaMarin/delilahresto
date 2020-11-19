@@ -14,7 +14,7 @@ CREATE TABLE delilah_resto.products(
     product_name VARCHAR(255) NOT NULL,
     price FLOAT(4,2) NOT NULL,
     stock BOOLEAN NOT NULL DEFAULT TRUE, 
-    imgUrl VARCHAR(255) NOT NULL,
+    img_url VARCHAR(255) NOT NULL,
     category VARCHAR(255),
     PRIMARY KEY(id)
 );
@@ -22,8 +22,8 @@ CREATE TABLE delilah_resto.orders(
 	id INT AUTO_INCREMENT NOT NULL,
     user_id INT NOT NULL,
     status VARCHAR(45) NOT NULL,
-    paymentMethod VARCHAR(45) NOT NULL,
-    updateTime TIME NOT NULL,
+    payment_method VARCHAR(45) NOT NULL,
+    update_time TIME NOT NULL,
     PRIMARY KEY(id)
 );
 CREATE TABLE delilah_resto.orders_details(
