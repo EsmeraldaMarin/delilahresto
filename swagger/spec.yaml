@@ -21,6 +21,22 @@ schemes:
  - http 
  
 paths: 
+  /login:
+    post:
+      tags:
+      - "user"
+      summary: "Login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/Login'
+      responses:
+        "200":
+          description: "User logged in successfully"
+        "404":
+          description: "Non-existent user"
   /users:
     get:
       tags:
@@ -87,26 +103,6 @@ paths:
           description: "Bad request"
     
   /orders/{id}:
-    get:
-      tags:
-      - "order"
-      summary: "Get order by id"
-      description: "An admin can see any order, a normal user can see only his own"
-      parameters:
-        - name: id
-          in: path
-          description: "Order id to update the status"
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: '#/definitions/Orders'
-        "400":
-          description: "Bad request"
     put:
       tags:
       - "order"
@@ -237,6 +233,15 @@ paths:
           description: "Bad request"
 
 definitions:
+  Login:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password: 
+        type: "string"
+    xml:
+      name: "Login"
   Users:
     type: "object"
     properties:
@@ -253,6 +258,8 @@ definitions:
       phone:
         type: "string"
       address:
+        type: "string"
+      password:
         type: "string"
     xml:
       name: "Users"

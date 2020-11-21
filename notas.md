@@ -6,7 +6,7 @@ libreria bcrypt encripta pero no desencripta
 
 # Ultimas cosas hechas
 
-* correcciones de columnas, precios, authorization params
+* documentacion swagger
 
 # Hacer
 
